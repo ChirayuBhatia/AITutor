@@ -1,0 +1,6 @@
+pyaudio
+faster-whisper
+piper-tts
+requests
+json
+google-generativeai
