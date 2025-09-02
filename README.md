@@ -25,9 +25,6 @@ curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bas
 source ~/.bashrc
 nvm install 18
 nvm use 18
-
-# Other Dependencies
-sudo apt-get install python-dev python-rpi.gpio
 ```
 ### Step-4: Create Service for Frontend
 ```bash
@@ -76,4 +73,10 @@ pm2 start backend.sh
 ```
 ```bash
 pm2 save
+```
+### Step-6: Add Piper Voices
+Inside AITutor Directory Run
+```bash
+wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/hfc_female/medium/en_US-hfc_female-medium.onnx
+wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/hfc_female/medium/en_US-hfc_female-medium.onnx.json
 ```
