@@ -2,7 +2,7 @@ from faster_whisper import WhisperModel
 import google.generativeai as genai
 from requests import post, get
 import subprocess as sp
-import RPi.GPIO as GPIO
+from gpiozero import Servo
 from time import sleep
 import json
 import re
@@ -10,23 +10,21 @@ import re
 
 GENAI_API_KEY = ""
 UNSPLASH_API_KEY = ""
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(3, GPIO.OUT)
-pwm = GPIO.PWM(3, 50)
-pwm.start(7)
+servo = Servo(17)
+servo.mid()
 
 
 def face_expression(expression):
     post('http://localhost:3000/'+expression)
 
 
-def set_angle(angle):
-    duty = angle / 18 + 2
-    GPIO.output(3, True)
-    pwm.ChangeDutyCycle(duty)
-    sleep(1)
-    GPIO.output(3, False)
-    pwm.ChangeDutyCycle(0)
+# def set_angle(angle):
+#     duty = angle / 18 + 2
+#     GPIO.output(3, True)
+#     pwm.ChangeDutyCycle(duty)
+#     sleep(1)
+#     GPIO.output(3, False)
+#     pwm.ChangeDutyCycle(0)
 
 
 face_expression('closeeye')
@@ -69,13 +67,13 @@ while True:
         if not query:
             continue
         elif query.strip().lower() in ['see left', 'left', 'look left', 'sea left']:
-            set_angle(10)
+            servo.min()
             continue
         elif query.strip().lower() in ['see right', 'right', 'look right', 'sea right']:
-            set_angle(170)
+            servo.mid()
             continue
         elif query.strip().lower() in ['see center', 'center', 'look center', 'sea center']:
-            set_angle(90)
+            servo.max()
             continue
         response = get_gemini_reply(query)
         print(response)
@@ -104,10 +102,6 @@ while True:
 
     except KeyboardInterrupt:
         print("\nExiting.")
-        pwm.stop()
-        GPIO.cleanup()
         break
     except Exception as e:
         print(f"Error: {e}")
-        pwm.stop()
-        GPIO.cleanup()

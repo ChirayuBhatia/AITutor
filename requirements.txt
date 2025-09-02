@@ -2,5 +2,6 @@ pyaudio
 faster-whisper
 piper-tts
 requests
-json
+google
 google-generativeai
+gpiozero
