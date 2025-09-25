@@ -1,23 +1,28 @@
 # Use an official Python image
 FROM python:3.9-slim
 
-# Set the working directory
-WORKDIR /app/backend
+# Set the working directory inside the container
+WORKDIR /app
 
-# Install wget
-RUN apt-get update && apt-get install -y wget
+# Install system dependencies for PyAudio and wget
+# We set a non-interactive frontend to prevent prompts during build
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    portaudio19-dev \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy the requirements file
+# Copy the requirements file and install Python dependencies
 COPY backend/requirements.txt .
-
-# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the backend source code
+# Copy the backend source code into the working directory
 COPY backend/ .
 
 # Download the Piper voice models
-RUN wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/hfc_female/medium/en_US-hfc_female-medium.onnx.json
+RUN wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/hfc_female/medium/en_US-hfc_female-medium.onnx
 
-# Command to run the backend (adjust backend.sh if necessary)
-CMD ["sh", "./backend.sh"]
+# Set the command to run the application
+# This replaces 'python main.py' from your script
+CMD ["python", "main.py"]

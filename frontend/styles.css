@@ -1,125 +1,125 @@
 :root {
-  --bg: #bfe5ff;
-  --cheek: #f59bb0;
-  --eye: #0a0a0a;
-  --shine: #ffffff;
-  --line: #444;
+	--bg: #bfe5ff;
+	--cheek: #f59bb0;
+	--eye: #0a0a0a;
+	--shine: #ffffff;
+	--line: #444;
 }
 
 body {
-  margin: 0;
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
-  gap: 20px;
-  background: #0e1a24;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+	margin: 0;
+	min-height: 100svh;
+	display: grid;
+	place-items: center;
+	gap: 20px;
+	background: #0e1a24;
+	font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
 .card {
-  width: min(90vw, 520px);
-  aspect-ratio: 16/10;
-  background: var(--bg);
-  border-radius: 16px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22);
-  position: relative;
-  overflow: hidden;
+	width: min(90vw, 520px);
+	aspect-ratio: 16/10;
+	background: var(--bg);
+	border-radius: 16px;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22);
+	position: relative;
+	overflow: hidden;
 }
 
 /* Cheek styles remain unchanged */
 .cheek {
-  position: absolute;
-  bottom: 26%;
-  width: 56px;
-  height: 56px;
-  background: var(--cheek);
-  border-radius: 50%;
+	position: absolute;
+	bottom: 26%;
+	width: 56px;
+	height: 56px;
+	background: var(--cheek);
+	border-radius: 50%;
 }
 .cheek.left { left: 12%; }
 .cheek.right { right: 12%; }
 
 /* --- Mouth Control (Updated) --- */
 .mouth {
-  position: absolute;
-  left: 50%;
-  top: 40%;
-  width: 56%;
-  height: 46%; /* The initial height of the mouth area */
-  transform: translateX(-50%);
-  border-bottom: 3px solid var(--line);
-  border-radius: 0 0 200px 200px;
-  /* The clip-path now remains static, always showing the bottom part */
-  clip-path: inset(72% 0 0 0);
-  background-color: transparent; /* Mouth is shut by default */
-  transition: background-color 0.2s;
+	position: absolute;
+	left: 50%;
+	top: 40%;
+	width: 56%;
+	height: 46%; /* The initial height of the mouth area */
+	transform: translateX(-50%);
+	border-bottom: 3px solid var(--line);
+	border-radius: 0 0 200px 200px;
+	/* The clip-path now remains static, always showing the bottom part */
+	clip-path: inset(72% 0 0 0);
+	background-color: transparent; /* Mouth is shut by default */
+	transition: background-color 0.2s;
 }
 
 /* When .speaking class is added, mouth animates */
 .mouth.speaking {
-  background-color: #0a0a0a; /* Show background for open mouth */
-  animation: speak-lower-jaw 0.5s ease-in-out infinite;
+	background-color: #0a0a0a; /* Show background for open mouth */
+	animation: speak-lower-jaw 0.5s ease-in-out infinite;
 }
 
 /* UPDATED KEYFRAMES: Animate height to move the lower jaw */
 @keyframes speak-lower-jaw {
-  0% {
-    height: 46%; /* Closed state */
-    clip-path: inset(72% 0 0 0);
-  }
-  50% {
-    height: 50%; /* Open state: element expands downwards */
-    clip-path: inset(68% 0 0 0);
-  }
-  100% {
-    height: 46%; /* Closed state */
-    clip-path: inset(72% 0 0 0);
-  }
+	0% {
+		height: 46%; /* Closed state */
+		clip-path: inset(72% 0 0 0);
+	}
+	50% {
+		height: 50%; /* Open state: element expands downwards */
+		clip-path: inset(68% 0 0 0);
+	}
+	100% {
+		height: 46%; /* Closed state */
+		clip-path: inset(72% 0 0 0);
+	}
 }
 
 /* --- Eye Control (Unchanged) --- */
 .eyes {
-  position: absolute;
-  inset: 0;
+	position: absolute;
+	inset: 0;
 }
 
 .eye {
-  position: absolute;
-  top: 20%;
-  width: 120px;
-  height: 120px;
-  left: 20%;
-  transform: translateX(-10%);
+	position: absolute;
+	top: 20%;
+	width: 120px;
+	height: 120px;
+	left: 20%;
+	transform: translateX(-10%);
 }
 .eye.right {
-  left: auto;
-  right: 20%;
-  transform: translateX(10%);
+	left: auto;
+	right: 20%;
+	transform: translateX(10%);
 }
 
 .eye::before,
 .eye::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  border-radius: 50%;
-  background: var(--eye);
-  transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.2s, border-radius 0.2s;
-  transform-origin: 50% 50%;
+	content: "";
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	border-radius: 50%;
+	background: var(--eye);
+	transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.2s, border-radius 0.2s;
+	transform-origin: 50% 50%;
 }
 
 .eye::before {
-  width: 100px;
-  height: 100px;
+	width: 100px;
+	height: 100px;
 }
 
 .eye::after {
-  width: 26px;
-  height: 26px;
-  background: var(--shine);
-  left: 28%;
-  top: 20%;
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, .08) inset;
+	width: 26px;
+	height: 26px;
+	background: var(--shine);
+	left: 28%;
+	top: 20%;
+	box-shadow: 0 0 0 4px rgba(255, 255, 255, .08) inset;
 }
 
 /* Lash styles remain unchanged */
@@ -154,51 +154,51 @@ body {
 
 /* Eye state styles remain unchanged */
 .eyes.closed .eye::before {
-  transform: scaleY(0.08);
-  border-radius: 50%/100%;
+	transform: scaleY(0.08);
+	border-radius: 50%/100%;
 }
 .eyes.closed .eye::after {
-  opacity: .2;
-  transform: scaleY(0.08);
+	opacity: .2;
+	transform: scaleY(0.08);
 }
 .eyes.closed .lashes::before {
-  opacity: 1;
-  transform: translateY(18px) scaleY(1);
+	opacity: 1;
+	transform: translateY(18px) scaleY(1);
 }
 
 /* Status panel styles remain unchanged */
 .status {
-  color: white;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 8px 16px;
-  border-radius: 12px;
-  font-weight: 600;
+	color: white;
+	background: rgba(0, 0, 0, 0.4);
+	padding: 8px 16px;
+	border-radius: 12px;
+	font-weight: 600;
 }
 
 /* Responsive tweaks remain unchanged */
 @media (max-width: 480px) {
-  .eye::before {
-    width: 78px;
-    height: 78px;
-  }
-  .eye {
-    width: 90px;
-    height: 90px;
-  }
-  .cheek {
-    width: 44px;
-    height: 44px;
-  }
+	.eye::before {
+		width: 78px;
+		height: 78px;
+	}
+	.eye {
+		width: 90px;
+		height: 90px;
+	}
+	.cheek {
+		width: 44px;
+		height: 44px;
+	}
 }
 .dynamic-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 12px;
-  object-fit: contain;
-  display: none; /* Hidden by default */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 90%;
+	max-height: 80%;
+	border-radius: 12px;
+	object-fit: contain;
+	display: none; /* Hidden by default */
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }

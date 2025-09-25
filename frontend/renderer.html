@@ -1,29 +1,29 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Controllable Face</title>
-  <link rel="stylesheet" href="styles.css" />
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<title>Controllable Face</title>
+	<link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-  <div class="card" id="card">
-    <span class="cheek left"></span>
-    <span class="cheek right"></span>
+<div class="card" id="card">
+	<span class="cheek left"></span>
+	<span class="cheek right"></span>
+	
+	<!-- The mouth will animate when it receives the 'speaking' class -->
+	<div class="mouth" id="mouth"></div>
+	
+	<!-- This container will receive the 'closed' class to control the eyes -->
+	<div class="eyes" id="eyes">
+		<span class="eye left"></span>
+		<span class="eye right"></span>
+		<span class="lashes left"></span>
+		<span class="lashes right"></span>
+	</div>
+</div>
+<img id="dynamic-image" class="dynamic-image" alt="Dynamic Content"/>
 
-    <!-- The mouth will animate when it receives the 'speaking' class -->
-    <div class="mouth" id="mouth"></div>
-
-    <!-- This container will receive the 'closed' class to control the eyes -->
-    <div class="eyes" id="eyes">
-      <span class="eye left"></span>
-      <span class="eye right"></span>
-      <span class="lashes left"></span>
-      <span class="lashes right"></span>
-    </div>
-  </div>
-  <img id="dynamic-image" class="dynamic-image" alt="Dynamic Content" />
-
-  <script src="renderer.js"></script>
+<script src="renderer.js"></script>
 </body>
 </html>

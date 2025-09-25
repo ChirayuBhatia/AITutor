@@ -1,16 +1,16 @@
 {
-  "name": "electron-face-controller",
-  "version": "1.0.0",
-  "private": true,
-  "main": "main.js",
-  "scripts": {
-    "start": "electron .",
-    "dev": "NODE_ENV=development electron ."
-  },
-  "dependencies": {
-    "express": "^4.19.2"
-  },
-  "devDependencies": {
-    "electron": "^30.0.0"
-  }
+	"name": "electron-face-controller",
+	"version": "1.0.0",
+	"private": true,
+	"main": "main.js",
+	"scripts": {
+		"start": "electron .",
+		"dev": "NODE_ENV=development electron ."
+	},
+	"dependencies": {
+		"express": "^4.19.2"
+	},
+	"devDependencies": {
+		"electron": "^30.0.0"
+	}
 }
