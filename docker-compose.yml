@@ -11,6 +11,8 @@ services:
         environment:
             # Add any necessary environment variables here
             - DISPLAY=:0
+        volumes:
+            - /tmp/.X11-unix:/tmp/.X11-unix
 
     backend:
         build:
