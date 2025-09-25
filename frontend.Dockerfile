@@ -27,11 +27,11 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copy package files and install dependencies
-COPY package*.json ./
+COPY frontend/package*.json ./
 RUN npm install
 
 # Copy the rest of your application's source code
-COPY . .
+COPY frontend/ .
 
 # The command to start your Electron application
 CMD ["npm", "start"]
